@@ -20,18 +20,7 @@ struct ContentView: View {
             ZStack {
                     List {
                         ForEach(viewModel.people) { person in
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(person.nombre)
-                                        .font(.headline)
-                                    Text(formattedDate(person.fechaJubilacion))
-                                        .font(.subheadline)
-                                    HStack {
-                                        Spacer()
-                                        CountdownView(targetDate: person.fechaJubilacion, settings: settings)
-                                    }
-                                }
-                            }
+                            CeldaJubilacion(settings: settings, persona: person)
                         }
                         .onDelete(perform: viewModel.removePerson)
                     }
@@ -56,11 +45,7 @@ struct ContentView: View {
         }
     }
 
-    func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: date)
-    }
+    
 }
 
 
@@ -68,3 +53,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
