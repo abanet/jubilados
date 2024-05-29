@@ -35,8 +35,8 @@ struct ContentView: View {
                             .background(Color.clear) // Fondo claro para cada celda
                         }
                         .onDelete(perform: viewModel.removePerson)
-                    }.background(Color.clear)
-                }.background(Color.clear)
+                    }
+                }
             }
             
             .navigationTitle("Jubilator")
