@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0D609F62C0781E10063D4B0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D609F52C0781E10063D4B0 /* Settings.swift */; };
+		C0D609F82C0782030063D4B0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D609F72C0782030063D4B0 /* SettingsView.swift */; };
 		C0E25C952C073EEA0043DDF2 /* JubilatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E25C942C073EEA0043DDF2 /* JubilatorApp.swift */; };
 		C0E25C972C073EEA0043DDF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E25C962C073EEA0043DDF2 /* ContentView.swift */; };
 		C0E25C992C073EF50043DDF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E25C982C073EF50043DDF2 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C0D609F52C0781E10063D4B0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		C0D609F72C0782030063D4B0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C0E25C912C073EEA0043DDF2 /* Jubilator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jubilator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E25C942C073EEA0043DDF2 /* JubilatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JubilatorApp.swift; sourceTree = "<group>"; };
 		C0E25C962C073EEA0043DDF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 			children = (
 				C0E25CA92C074E770043DDF2 /* AddPersonView.swift */,
 				C0E25CAE2C0765280043DDF2 /* CountDownView.swift */,
+				C0D609F72C0782030063D4B0 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E25CAC2C075BC80043DDF2 /* ColorExtension.swift */,
+				C0D609F52C0781E10063D4B0 /* Settings.swift */,
 			);
 			name = Configuracion;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			files = (
 				C0E25CAF2C0765280043DDF2 /* CountDownView.swift in Sources */,
 				C0E25CA72C0740810043DDF2 /* JubilacionViewModel.swift in Sources */,
+				C0D609F62C0781E10063D4B0 /* Settings.swift in Sources */,
+				C0D609F82C0782030063D4B0 /* SettingsView.swift in Sources */,
 				C0E25CA32C073F1C0043DDF2 /* Person.swift in Sources */,
 				C0E25CAA2C074E770043DDF2 /* AddPersonView.swift in Sources */,
 				C0E25CAD2C075BC80043DDF2 /* ColorExtension.swift in Sources */,

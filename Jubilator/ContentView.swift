@@ -12,12 +12,12 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = JubilacionViewModel()
     @State private var showingAddPersonView = false
+    @State private var showingSettingsView = false
+    @StateObject private var settings = Settings()
 
     var body: some View {
         NavigationView {
             ZStack {
-                
-                VStack {
                     List {
                         ForEach(viewModel.people) { person in
                             HStack {
@@ -26,28 +26,33 @@ struct ContentView: View {
                                         .font(.headline)
                                     Text(formattedDate(person.fechaJubilacion))
                                         .font(.subheadline)
-                                    CountdownView(targetDate: person.fechaJubilacion)
-                                        .padding(.top, 5)
+                                    HStack {
+                                        Spacer()
+                                        CountdownView(targetDate: person.fechaJubilacion, settings: settings)
+                                    }
                                 }
-                                .background(Color.clear)
-                                .padding(.vertical, 10)
                             }
-                            .background(Color.clear) // Fondo claro para cada celda
                         }
                         .onDelete(perform: viewModel.removePerson)
                     }
-                }
             }
             
             .navigationTitle("Jubilator")
-            .navigationBarItems(trailing: Button(action: {
-                showingAddPersonView = true
-            }) {
-                Image(systemName: "plus")
-            })
-            .sheet(isPresented: $showingAddPersonView) {
-                AddPersonView(viewModel: viewModel)
-            }
+            .navigationBarItems(leading: Button(action: {
+                            showingSettingsView = true
+                        }) {
+                            Image(systemName: "gear")
+                        }, trailing: Button(action: {
+                            showingAddPersonView = true
+                        }) {
+                            Image(systemName: "plus")
+                        })
+                        .sheet(isPresented: $showingSettingsView) {
+                            SettingsView(settings: settings)
+                        }
+                        .sheet(isPresented: $showingAddPersonView) {
+                            AddPersonView(viewModel: viewModel)
+                        }
         }
     }
 

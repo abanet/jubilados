@@ -9,37 +9,72 @@ import SwiftUI
 
 struct CountdownView: View {
     var targetDate: Date
+    @ObservedObject var settings: Settings
     @State private var remainingTime: String = ""
+    @State private var progress: Double = 1.0
     
     var body: some View {
-        Text(remainingTime)
-            .font(.system(.body, design: .monospaced)) // Usa una fuente monoespaciada
-            .frame(minWidth: 250, alignment: .trailing) // Ajusta el ancho mínimo del cuadro de texto
-            .onAppear(perform: updateRemainingTime)
-            .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
-                updateRemainingTime()
-            }
-            .background(Color.esperanza)
+        VStack {
+            Text(remainingTime)
+                .font(.system(.body, design: .monospaced))
+                .frame(minWidth: 250, alignment: .trailing) 
+                .onAppear(perform: updateRemainingTime)
+                .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
+                    updateRemainingTime()
+                }
+            ProgressView(value: progress)
+                           .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                           .background(Color.red)
+                           .frame(height: 10)
+                           
+        } .background(Color.esperanza)
     }
+    
     
     func updateRemainingTime() {
         let now = Date()
         let calendar = Calendar.current
         
-        let components = calendar.dateComponents([.year, .day, .hour, .minute, .second], from: now, to: targetDate)
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now, to: targetDate)
         
-        if let years = components.year, let days = components.day, let hours = components.hour, let minutes = components.minute, let seconds = components.second {
-            let totalDays = calendar.dateComponents([.day], from: now, to: targetDate).day ?? 0
-            let yearsFromDays = totalDays / 365
-            let daysRemaining = totalDays % 365
+        var timeStrings: [String] = []
+        
+        if let years = components.year, let months = components.month, let days = components.day, let hours = components.hour, let minutes = components.minute, let seconds = components.second {
+            if years > 0 {
+                timeStrings.append("\(years) año\(years > 1 ? "s" : "")")
+            }
             
-            remainingTime = String(format: "%02da %03dd %02dh %02dm %02ds", yearsFromDays, daysRemaining, hours, minutes, seconds)
+            if years > 0 || months > 0 {
+                timeStrings.append("\(months) mes\(months > 1 ? "es" : "")")
+            }
+            
+            if years > 0 || months > 0 || days > 0 {
+                timeStrings.append("\(days) día\(days > 1 ? "s" : "")")
+            }
+            
+            if years > 0 || months > 0 || days > 0 || hours > 0 {
+                timeStrings.append("\(hours) hora\(hours > 1 ? "s" : "")")
+            }
+            
+            if years > 0 || months > 0 || days > 0 || hours > 0 || minutes > 0 {
+                timeStrings.append("\(minutes) minuto\(minutes > 1 ? "s" : "")")
+            }
+            
+            timeStrings.append("\(seconds) segundo\(seconds > 1 ? "s" : "")")
+            
+            remainingTime = timeStrings.joined(separator: ", ")
+            // Calcular el progreso
+            let totalYears = 10.0 // más de 10 asumimos un 100%, queda mucho
+            let yearsRemaining = Double(years) + (Double(months) / 12.0)
+            progress = 1.0 - min(1.0, yearsRemaining / totalYears)
         } else {
-            remainingTime = "Time's up!"
+            remainingTime = "¡Tiempo agotado!"
+            progress = 0
         }
     }
+
 }
 
 #Preview {
-    CountdownView(targetDate: Date())
+    CountdownView(targetDate: Date(), settings: Settings())
 }
