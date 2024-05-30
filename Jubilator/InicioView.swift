@@ -18,12 +18,18 @@ struct InicioView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                Color.yellow.edgesIgnoringSafeArea(.all)
+            
+                VStack {
                     List {
-                        ForEach(viewModel.people) { person in
-                            CeldaJubilacion(settings: settings, persona: person)
-                        }
-                        .onDelete(perform: viewModel.removePerson)
+                            ForEach(viewModel.people) { person in
+                                CeldaJubilacion(settings: settings, persona: person).listRowBackground(Color.clear)
+                            }
+                            .onDelete(perform: viewModel.removePerson)
                     }
+                    .listStyle(PlainListStyle())
+                }
+                .background(Color.esperanza)
             }
             
             .navigationTitle("Jubilator")

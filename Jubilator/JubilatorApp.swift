@@ -11,7 +11,7 @@ import SwiftUI
 struct JubilatorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            InicioView()
         }
     }
 }

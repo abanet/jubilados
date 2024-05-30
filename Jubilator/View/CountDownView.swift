@@ -24,10 +24,9 @@ struct CountdownView: View {
                 }
             ProgressView(value: progress)
                            .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                           .background(Color.red)
                            .frame(height: 10)
                            
-        } .background(Color.esperanza)
+        }
     }
     
     

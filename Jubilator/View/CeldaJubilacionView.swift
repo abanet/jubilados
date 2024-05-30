@@ -15,7 +15,6 @@ struct CeldaJubilacion: View {
             VStack(alignment: .leading) {
                 Text(persona.nombre)
                     .font(.headline)
-                    .foregroundColor(settings.getThemeColors().primary)
                 Text(formattedDate(persona.fechaJubilacion))
                     .font(.subheadline)
                 HStack {

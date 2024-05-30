@@ -8,5 +8,5 @@
 import SwiftUI
 
 extension Color {
-    static let esperanza = Color("colorEsperanza")
+    static let esperanza = Color("colorEsperanza")  // Color de fondo de aplicación
 }
