@@ -9,7 +9,7 @@ import SwiftUI
 
 import SwiftUI
 
-struct ContentView: View {
+struct InicioView: View {
     @StateObject private var viewModel = JubilacionViewModel()
     @State private var showingAddPersonView = false
     @State private var showingSettingsView = false
@@ -51,7 +51,7 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    InicioView()
 }
 
 
