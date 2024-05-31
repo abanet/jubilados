@@ -18,7 +18,7 @@ struct InicioView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.yellow.edgesIgnoringSafeArea(.all)
+                BackgroundView()
             
                 VStack {
                     List {
@@ -29,7 +29,7 @@ struct InicioView: View {
                     }
                     .listStyle(PlainListStyle())
                 }
-                .background(Color.esperanza)
+                
             }
             
             .navigationTitle("Jubilator")
@@ -54,10 +54,19 @@ struct InicioView: View {
     
 }
 
+struct BackgroundView: View {
+    var body: some View {
+        LinearGradient(colors: [.blue, .yellow,.green], startPoint: .topLeading, endPoint: .bottomTrailing)
+            .opacity(0.4)
+            .ignoresSafeArea()
+    }
+}
 
 
 #Preview {
     InicioView()
 }
+
+
 
 
